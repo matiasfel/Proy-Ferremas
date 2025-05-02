@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    animation: fadeIn 4s ease-in-out, rainbowBg 15s linear infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rainbowBg {
+    0% {
+        background-color: #ffcccc; /* Pastel Red */
+    }
+    5% {
+        background-color: #ffd4b8; /* Transition between Red and Orange */
+    }
+    10% {
+        background-color: #ffd9b3; /* Pastel Orange */
+    }
+    15% {
+        background-color: #ffe6b3; /* Transition between Orange and Yellow */
+    }
+    20% {
+        background-color: #ffffcc; /* Pastel Yellow */
+    }
+    25% {
+        background-color: #ecf2cc; /* Transition between Yellow and Yellow-Green */
+    }
+    30% {
+        background-color: #d9f2d9; /* Pastel Yellow-Green */
+    }
+    35% {
+        background-color: #ccf2cc; /* Transition between Yellow-Green and Green */
+    }
+    40% {
+        background-color: #ccffcc; /* Pastel Green */
+    }
+    45% {
+        background-color: #ccf5e6; /* Transition between Green and Cyan */
+    }
+    50% {
+        background-color: #ccffff; /* Pastel Cyan */
+    }
+    55% {
+        background-color: #ccecff; /* Transition between Cyan and Blue */
+    }
+    60% {
+        background-color: #cce5ff; /* Pastel Blue */
+    }
+    65% {
+        background-color: #d4ccf2; /* Transition between Blue and Indigo */
+    }
+    70% {
+        background-color: #d9ccf2; /* Pastel Indigo */
+    }
+    75% {
+        background-color: #e0ccf5; /* Transition between Indigo and Violet */
+    }
+    80% {
+        background-color: #e6ccff; /* Pastel Violet */
+    }
+    85% {
+        background-color: #f2cce6; /* Transition between Violet and Pink */
+    }
+    90% {
+        background-color: #ffcce6; /* Pastel Pink */
+    }
+    95% {
+        background-color: #ffccd4; /* Transition between Pink and Red */
+    }
+    100% {
+        background-color: #ffcccc; /* Pastel Red */
+    }
+}
