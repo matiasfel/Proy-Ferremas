@@ -1,2 +1,4 @@
-Django>=4.2,<5.0
+Django
 python-decouple
+django-extensions
+django-browser-reload
