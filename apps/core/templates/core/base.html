@@ -21,6 +21,10 @@
           <img src="{% static 'core/img/mercha/logo-transparent.png' %}" alt="Logo de la pagina web">
         </div>
 
+        <div class="navbar-no-log">
+          <p>¡No has iniciado sesión! <br> <a href="#">inicia sesión.</a></p>
+        </div>
+
         <ul>
           <li>
             <a href="#">
@@ -44,7 +48,7 @@
           </li>
         </ul>
 
-        <div>
+        <div class="navbar-footer">
           <p>&copy; FERREMAS. Todos los derechos reservados. <span id="year"></span></p>
         </div>
 
@@ -85,26 +89,18 @@
           </div>
 
           <div class="buttons">
-
-            <button>
-              <a href="#">
-                Iniciar sesión
-              </a>
+            <button class="non-responsive">
+              Iniciar sesión
             </button>
 
-            <button>
-              <img src="{% static 'core/img/log-in.svg'%}" alt="">
+            <button class="non-responsive">
+              Crear cuenta
             </button>
 
-            <button>
-              <a href="#">
-                Registrarse
-              </a>
+            <button class="responsive">
+              <img src="{% static 'core/img/burger.svg' %}" alt="Menu burger">
             </button>
 
-            <button class="burger">
-              <img src="{% static 'core/img/burger.svg' %}" alt="Menu">
-            </button>
           </div>
         </nav>
       </header>
@@ -114,7 +110,7 @@
 
       {% block content %}
         <section class="bg-white flex items-center justify-center min-h-screen">
-          <div class="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+          <div class="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32 mt-12">
             <div class="mx-auto max-w-prose text-center">
               <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
           Bienvenido a <strong class="text-[#13509b]"> Ferremas </strong>
@@ -330,35 +326,39 @@
                 </li>
               </ul>
       
-              <p class="mt-8 text-xs text-gray-500 sm:mt-0">
-                &copy; 2022. Company Name. All rights reserved.
-              </p>
+              <p class="mt-8 text-xs text-gray-500 sm:mt-0">&copy; FERREMAS. Todos los derechos reservados. <span id="year"></span></p>
             </div>
           </div>
         </div>
       </footer>
-    </body>
-</html>
-
-<script>
+  </body>
+  <script>
     /* Script para año de footer */
-    document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-<script>
-    /* Script para el menu burger con transición */
-    const burger = document.querySelector('.burger');
-    const navbarOpen = document.querySelector('.navbar-open');
-    const close = document.querySelector('.close');
-
-    // Agregar estilo de transición al navbar
-    navbarOpen.style.transition = 'transform 0.3s ease-in-out';
-
-    burger.addEventListener('click', () => {
-      navbarOpen.style.transform = navbarOpen.style.transform === 'translateY(0)' ? '' : 'translateY(0)';
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearElements = document.querySelectorAll('#year');
+      const currentYear = new Date().getFullYear();
+      yearElements.forEach(element => {
+        element.textContent = currentYear;
+      });
     });
-
-    close.addEventListener('click', () => {
-      navbarOpen.style.transform = '';
-    });
-</script>
+  </script>
+  
+  <script>
+      /* Script para el menu burger con transición */
+      const burger = document.querySelector('.burger');
+      const navbarOpen = document.querySelector('.navbar-open');
+      const close = document.querySelector('.close');
+  
+      // Agregar estilo de transición al navbar
+      navbarOpen.style.transition = 'transform 0.3s ease-in-out';
+  
+      burger.addEventListener('click', () => {
+        navbarOpen.style.transform = navbarOpen.style.transform === 'translateY(0)' ? '' : 'translateY(0)';
+      });
+  
+      close.addEventListener('click', () => {
+        navbarOpen.style.transform = '';
+      });
+  </script>
+  {% django_browser_reload_script %}
+</html>
