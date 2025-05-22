@@ -1,6 +1,8 @@
 from django.urls import path
+from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
-    path('', views.base_view, name='base')
+    path('', lambda request: redirect('base'), name='home'),
+    path('home/', views.base_view, name='base'),
 ]

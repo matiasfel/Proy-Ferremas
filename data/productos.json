@@ -1,0 +1,15 @@
+[
+    {
+      "codigo": "FER-12345",
+      "codigo_marca": "BOS-67890",
+      "marca": "Bosch",
+      "nombre": "Taladro Percutor Bosch",
+      "stock": 20,
+      "precios": [
+        {
+          "fecha": "2024-05-01T00:00:00Z",
+          "valor": 89090.99
+        }
+      ]
+    }
+  ]  

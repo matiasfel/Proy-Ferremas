@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load django_browser_reload %}
+
+{% block title %}
+    Productos
+{% endblock %}
+
+{% block content %}
+    <section class="min-h-screen">
+        <!-- PRODUCTOS / LISTADO -->
+        <div class="flex justify-center items-center">
+            <div class="products-main mt-[300px]">
+                <h1 style="font-weight: bold; text-align: center;">Productos</h1>
+                <ul>
+                    {% if productos %}
+                        <ul>
+                            {% for producto in productos %}
+                                <li>
+                                    <strong>{{ producto.nombre }}</strong><br>
+                                    Código: {{ producto.codigo }}<br>
+                                    Marca: {{ producto.marca.nombre }}<br>
+                                    Stock: {{ producto.stock }}<br>
+                                </li>
+                                <hr>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No hay productos disponibles.</p>
+                    {% endif %}
+                </ul>
+            </div>
+    </section>
+{% endblock %}

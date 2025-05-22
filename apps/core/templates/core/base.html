@@ -6,44 +6,64 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Iniciar sesión</title>
+        <title>&copy; FERREMAS | {% block title %}Inicio{% endblock %}</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'core/css/account.css' %}">
     </head>
-    <body>
+    <body class="bg-gray-50">
+
+      <div class="loading">
+        <div class="loading-spinner"></div>
+      </div>
 
       <div class="navbar-open">
         <div class="close">
-          <img src="{% static 'core/img/close.svg' %}" alt="Cerrar menu">
+          <img src="{% static 'core/img/svg/close.svg' %}" alt="Cerrar menu">
         </div>
 
         <div class="logo">
-          <img src="{% static 'core/img/mercha/logo-transparent.png' %}" alt="Logo de la pagina web">
+          <a href="{% url 'base' %}">  
+            <img src="{% static 'core/img/mercha/logo-transparent.png' %}" alt="Logo de la pagina web">
+          </a>
         </div>
 
-        <div class="navbar-no-log">
-          <p>¡No has iniciado sesión! <br> <a href="#">inicia sesión.</a></p>
+        {% if not user.is_authenticated %}
+        <div class="top-message">
+          <div>
+            <button onclick="location.href='{% url 'login' %}'">
+              Iniciar sesión
+            </button>
+            <button onclick="location.href='{% url 'register' %}'">
+              Crea tu cuenta
+            </button>
+          </div>
         </div>
+        {% elif user.is_authenticated %}
+          <div class="top-message">
+            <button onclick="location.href='{% url 'logout' %}'">
+              Cerrar sesión
+            </button>
+          </div>
+        {% endif %}
 
         <ul>
           <li>
-            <a href="#">
+            <img src="{% static 'core/img/svg/home.svg' %}" alt="Inicio">
+            <a href="{% url 'base' %}">
               Inicio
             </a>
           </li>
           <li>
-            <a href="#">
+            <img src="{% static 'core/img/svg/cube.svg' %}" alt="Productos">
+            <a href="{% url 'products' %}">
               Productos
             </a>
           </li>
           <li>
-            <a href="#">
-              Contacto
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              Soporte
+            <img src="{% static 'core/img/svg/call.svg' %}" alt="Contacto">
+            <a href="{% url 'account' %}">
+              Cuenta
             </a>
           </li>
         </ul>
@@ -57,120 +77,261 @@
       <header>
         <nav>
           <div class="logo">
-            <img src="{% static 'core/img/mercha/logo-transparent.png' %}" alt="Logo de la pagina web">
+            <a href="{% url 'base' %}">
+              <img src="{% static 'core/img/mercha/logo-transparent.png' %}" alt="Logo de la pagina web">
+            </a>
           </div>
 
           <div class="items">
             <ul>
               <li>
-                <a href="#">
+                <a href="{% url 'base' %}">
                   Inicio
                 </a>
               </li>
 
               <li>
-                <a href="#">
+                <a href="{% url 'products' %}">
                   Productos
-                </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  Contacto
-                </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  Soporte
                 </a>
               </li>
             </ul>
           </div>
 
           <div class="buttons">
-            <button class="non-responsive">
-              Iniciar sesión
-            </button>
+            {% if not user.is_authenticated %}
 
-            <button class="non-responsive">
-              Crear cuenta
-            </button>
+              <button class="non-responsive" onclick="location.href='{% url "login" %}'">
+                Iniciar sesión
+              </button>
+          
+              <button class="non-responsive" onclick="location.href='{% url "register" %}'">
+                Crea tu cuenta
+              </button>
+
+            {% elif user.is_authenticated %}
+
+              <button class="buy-cart" onclick="openCart()">
+                <img src="{% static 'core/img/svg/buy-cart.svg' %}" alt="Carro de compras">
+                <span>0</span>
+              </button>
+
+              <!-- Div cart -->
+                <div
+                  class="fixed top-18 right-4 w-full max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:right-8 sm:px-6 lg:right-32 lg:px-8"
+                  aria-modal="true"
+                  role="dialog"
+                  tabindex="-1"
+                  id="cart"
+                  style="display: none;
+                  z-index: 1000;
+                  background-color: rgba(255, 255, 255, 0.9);"
+                >
+                <button class="absolute end-4 top-4 text-gray-600 transition hover:scale-110" onclick="document.getElementById('cart').style.display = 'none';" style="cursor: pointer;">
+                  <img src="{% static 'core/img/svg/close.svg' %}" alt="Cerrar carro" class="size-6">
+                </button>
+              
+                <div class="mt-4 space-y-6">
+                  <ul class="space-y-4">
+                    <li class="flex items-center gap-4">
+                      <img
+                        src="https://images-na.ssl-images-amazon.com/images/I/718GmjiwbAL.jpg"
+                        alt=""
+                        class="size-16 rounded-sm object-cover"
+                      />
+              
+                      <div>
+                        <h3 class="text-sm text-gray-900">Prueba</h3>
+              
+                        <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                          <div>
+                            <dt class="inline">Versión:</dt>
+                            <dd class="inline">XXXXXX</dd>
+                          </div>
+              
+                          <div>
+                            <dt class="inline">Codigo:</dt>
+                            <dd class="inline">XXXXXX</dd>
+                          </div>
+                        </dl>
+                      </div>
+              
+                      <div class="flex flex-1 items-center justify-end gap-2">
+                        <form>
+                          <label for="Line2Qty" class="sr-only"> Quantity </label>
+              
+                          <input
+                            type="number"
+                            min="1"
+                            value="1"
+                            id="Line2Qty"
+                            class="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-hidden [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                          />
+                        </form>
+              
+                        <button class="text-gray-600">
+                          <span class="sr-only">Remove item</span>
+                          <img src="{% static 'core/img/svg/trash.svg' %}" alt="Eliminar producto" class="size-4" style="cursor: pointer;">
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+              
+                  <div class="space-y-4 text-center">
+                    <a
+                      href="#"
+                      class="block rounded-sm border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
+                    >
+                      Ver mi carro
+                    </a>
+              
+                    <a
+                      href="#"
+                      class="block rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                    >
+                      Pagar
+                    </a>
+              
+                    <a
+                      href="#"
+                      class="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+                    >
+                      Seguir comprando
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+
+              <button class="user" onclick="location.href='{% url "account" %}'">
+                <img src="{% static 'core/img/user.png' %}" alt="Usuario">
+                <span>{{ user.username }}</span>
+              </button>
+
+            {% endif %}
 
             <button class="responsive">
-              <img src="{% static 'core/img/burger.svg' %}" alt="Menu burger">
+              <img src="{% static 'core/img/svg/burger.svg' %}" alt="Menu burger">
             </button>
 
           </div>
         </nav>
+        <div class="border-b border-gray-200 bg-gray-100 px-4 py-2 text-gray-900">
+          {% if not user.is_authenticated %}
+            <p class="text-center font-medium">
+              Si <a href="{% url 'login' %}"><strong class="text-[#13509b] underline">inicias sesión</strong></a> podrás ver tus compras y acceder a descuentos exclusivos.
+            </p>
+          {% elif user.is_authenticated %}
+            <p class="text-center font-medium">
+                Usa el código <a href="#"><strong class="text-[#13509b] underline">FERREMAS10</strong></a> y obtén 10% de descuento en tu primera compra.
+            </p>
+          {% endif %}
+        </div>
       </header>
 
-      <div class="separator">
-      </div>
-
       {% block content %}
-        <section class="bg-white flex items-center justify-center min-h-screen">
-          <div class="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32 mt-12">
-            <div class="mx-auto max-w-prose text-center">
-              <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
-          Bienvenido a <strong class="text-[#13509b]"> Ferremas </strong>
-          tu ferretería de confianza
-              </h1>
 
-              <p class="mt-4 text-sm text-gray-700 sm:text-base lg:text-lg">
-          Descubre cómo nuestras herramientas y soluciones pueden ayudarte a construir, reparar y mejorar tus proyectos. ¡La calidad y el servicio que necesitas están aquí!
-              </p>
+        <section class="bg-gray-50 flex items-center justify-center min-h-screen relative">
+          <div class="mx-auto w-full max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32 mt-[80px]">
+            <div class="mx-auto max-w-prose text-center">
+              {% if not user.is_authenticated %}
+                <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+                  Bienvenido a <strong class="text-[#13509b]"> Ferremas </strong>
+                  tu ferretería de confianza
+                </h1>
+              {% elif user.is_authenticated %}
+                <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+                  Bienvenido <strong class="text-[#13509b]" style="text-transform: capitalize;">{{ user.username }}</strong>
+                </h1>
+              {% endif %}
+
+              {% if not user.is_authenticated %}
+                <p class="mt-4 text-sm text-gray-700 sm:text-base lg:text-lg">
+                  Descubre cómo nuestras herramientas y soluciones pueden ayudarte a construir, reparar y mejorar tus proyectos. ¡La calidad y el servicio que necesitas están aquí!
+                </p>
+              {% elif user.is_authenticated %}
+                <p class="mt-4 text-sm text-gray-700 sm:text-base lg:text-lg">
+                  Explora nuestras herramientas y soluciones para llevar tus proyectos al siguiente nivel. ¡La calidad y el servicio que necesitas están aquí!
+                </p>
+              {% endif %}
 
               <div class="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a
-            class="inline-block w-full rounded border border-[#13509b] bg-[#13509b] px-5 py-3 text-center font-medium text-white shadow-sm transition-colors hover:bg-[#0e3c73] sm:w-auto"
-            href="#"
-          >
-            Ver catálogo
-          </a>
+                <a
+                  class="inline-block w-full rounded border border-[#13509b] bg-[#13509b] px-5 py-3 text-center font-medium text-white shadow-sm transition-colors hover:bg-[#0e3c73] sm:w-auto"
+                  href="#"
+                >
+                  Ver catálogo
+                </a>
 
-          <a
-            class="inline-block w-full rounded border border-gray-200 px-5 py-3 text-center font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 sm:w-auto"
-            href="#"
-          >
-            ¿Quiénes somos?
-          </a>
+                {% if not user.is_authenticated %}
+                  <a
+                    class="inline-block w-full rounded bg-gray-50 px-5 py-3 text-center font-medium text-gray-700 hover:opacity-80 shadow-sm sm:w-auto transition-opacity"
+                    href="#"
+                  >
+                    ¿Quiénes somos?
+                  </a>
+                {% elif user.is_authenticated %}
+                  <a
+                    class="inline-block w-full rounded bg-gray-50 px-5 py-3 text-center font-medium text-gray-700 hover:opacity-80 shadow-sm sm:w-auto transition-opacity"
+                    href="#"
+                  >
+                    Ver mis compras
+                  </a>
+                {% endif %}
               </div>
             </div>
           </div>
         </section>
-      {% endblock %}
+
+        <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center mb-[160px]">
+          <div class="p-8 md:p-12 lg:px-16 lg:py-24">
+            <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right mt-[50px]">
+              <h2 class="text-2xl font-bold text-[#13509b] md:text-3xl">
+              Dedicación y Esfuerzo de Nuestros Trabajadores
+              </h2>
+            
+              <p class="hidden text-gray-500 md:mt-4 md:block"></p>
+              En Ferremas, valoramos profundamente la dedicación y el esfuerzo de nuestros trabajadores. Gracias a su compromiso diario, podemos ofrecer productos y servicios de calidad a nuestros clientes. 
+              <br><br>
+              Su pasión por el trabajo bien hecho y su disposición para superar desafíos son cualidades que admiramos. A todos ellos, les extendemos nuestro más sincero agradecimiento por ser el corazón de Ferremas.
+              </p>
+            </div>
+          </div>
+          <img
+          alt=""
+          src="{% static 'core/img/workers.jpg' %}"
+          class="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-tl-[30px] sm:rounded-bl-[30px] md:h-[calc(100%_-_4rem)] md:rounded-tl-[60px] md:rounded-bl-[60px]"
+          />
+        </section>
+
+        {% endblock %}
 
       <!-- EDITABLE FOOTER -->
-      <footer class="bg-white lg:grid lg:grid-cols-5">
+      <footer class="bg-white lg:grid lg:grid-cols-5 bottom-0">
         <div class="relative block h-32 lg:col-span-2 lg:h-full">
-          <img
-            src="{% static 'core/img/workers.jpg' %}"
-            alt=""
-            class="absolute inset-0 h-full w-full object-cover"
-          />
+          <div id="map" class="absolute inset-0 h-full w-full"></div>
         </div>
       
         <div class="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
           <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div>
               <p>
-                <span class="text-xs tracking-wide text-gray-500 uppercase"> Call us </span>
+                <span class="text-xs tracking-wide text-gray-500 uppercase"> Llamanos </span>
       
-                <a href="#" class="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl">
-                  0123456789
+                <a href="#" class="block text-2xl font-medium text-[#13509b] hover:opacity-75 sm:text-3xl">
+                  (+56) 442 201 098
                 </a>
               </p>
       
               <ul class="mt-8 space-y-1 text-sm text-gray-700">
-                <li>Monday to Friday: 10am - 5pm</li>
-                <li>Weekend: 10am - 3pm</li>
+                <li>Lunes a viernes: 10am - 5pm</li>
+                <li>Fin de semana: 10am - 3pm</li>
               </ul>
       
               <ul class="mt-8 flex gap-6">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/DuocUC/?locale=es_LA"
                     rel="noreferrer"
                     target="_blank"
                     class="text-gray-700 transition hover:opacity-75"
@@ -189,7 +350,7 @@
       
                 <li>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/duocuc_cl/?hl=es"
                     rel="noreferrer"
                     target="_blank"
                     class="text-gray-700 transition hover:opacity-75"
@@ -208,7 +369,7 @@
       
                 <li>
                   <a
-                    href="#"
+                    href="https://x.com/duocuc"
                     rel="noreferrer"
                     target="_blank"
                     class="text-gray-700 transition hover:opacity-75"
@@ -225,7 +386,7 @@
       
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/matiasfel/Proy-Ferremas"
                     rel="noreferrer"
                     target="_blank"
                     class="text-gray-700 transition hover:opacity-75"
@@ -241,69 +402,38 @@
                     </svg>
                   </a>
                 </li>
-      
-                <li>
-                  <a
-                    href="#"
-                    rel="noreferrer"
-                    target="_blank"
-                    class="text-gray-700 transition hover:opacity-75"
-                  >
-                    <span class="sr-only">Dribbble</span>
-      
-                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        fill-rule="evenodd"
-                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </a>
-                </li>
+
               </ul>
             </div>
       
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <p class="font-medium text-gray-900">Services</p>
+              <div class="mb-6">
+                <p class="font-medium text-[#13509b]"><strong>Catalogo</strong></p>
       
                 <ul class="mt-6 space-y-4 text-sm">
                   <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Herramientas manuales </a>
                   </li>
       
                   <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Company Review </a>
+                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Materiales básicos </a>
                   </li>
       
                   <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
-                  </li>
-      
-                  <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
-                  </li>
-      
-                  <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
+                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Equipos de seguridad </a>
                   </li>
                 </ul>
               </div>
       
               <div>
-                <p class="font-medium text-gray-900">Company</p>
-      
+                <p class="font-medium text-[#13509b]"><strong>Información</strong></p>
                 <ul class="mt-6 space-y-4 text-sm">
                   <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> About </a>
+                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Acerca de </a>
                   </li>
       
                   <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
-                  </li>
-      
-                  <li>
-                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                    <a href="#" class="text-gray-700 transition hover:opacity-75"> FAQ </a>
                   </li>
                 </ul>
               </div>
@@ -314,11 +444,11 @@
             <div class="sm:flex sm:items-center sm:justify-between">
               <ul class="flex flex-wrap gap-4 text-xs">
                 <li>
-                  <a href="#" class="text-gray-500 transition hover:opacity-75"> Terms & Conditions </a>
+                  <a href="#" class="text-gray-500 transition hover:opacity-75"> Terminos y condiciones </a>
                 </li>
       
                 <li>
-                  <a href="#" class="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
+                  <a href="#" class="text-gray-500 transition hover:opacity-75"> Politica de privacidad </a>
                 </li>
       
                 <li>
@@ -331,34 +461,14 @@
           </div>
         </div>
       </footer>
-  </body>
-  <script>
-    /* Script para año de footer */
-    document.addEventListener('DOMContentLoaded', () => {
-      const yearElements = document.querySelectorAll('#year');
-      const currentYear = new Date().getFullYear();
-      yearElements.forEach(element => {
-        element.textContent = currentYear;
-      });
-    });
-  </script>
-  
-  <script>
-      /* Script para el menu burger con transición */
-      const burger = document.querySelector('.burger');
-      const navbarOpen = document.querySelector('.navbar-open');
-      const close = document.querySelector('.close');
-  
-      // Agregar estilo de transición al navbar
-      navbarOpen.style.transition = 'transform 0.3s ease-in-out';
-  
-      burger.addEventListener('click', () => {
-        navbarOpen.style.transform = navbarOpen.style.transform === 'translateY(0)' ? '' : 'translateY(0)';
-      });
-  
-      close.addEventListener('click', () => {
-        navbarOpen.style.transform = '';
-      });
-  </script>
-  {% django_browser_reload_script %}
+    </body>
+
+    <script src="{% static 'core/js/google-maps.js' %}"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD61I2mz0l-DY9Ui4X8wMevEy7qwcYN2Fs&callback=initMap"></script>
+    <script src="{% static 'core/js/loading-page.js' %}"></script>
+    <script src="{% static 'core/js/navbar.js' %}" defer></script>
+    <script src="{% static 'core/js/footer.js' %}" defer></script>
+    <script src="{% static 'core/js/openCart.js' %}"></script>
+
+{% django_browser_reload_script %}
 </html>

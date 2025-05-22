@@ -1,0 +1,131 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load django_browser_reload %}
+
+{% block title %}
+    Crea tu cuenta
+{% endblock %}
+
+{% block content %}
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes translate-in {
+    from {
+      transform: translateY(-20px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-in-out forwards, translate-in 1s ease-in-out forwards;
+  }
+</style>
+
+<div class="min-h-screen flex fle-col items-center justify-center">
+    <div class="py-6 px-4 mt-[80px]">
+      <div class="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">
+        <div class="border border-slate-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+          <!-- Formulario de registrarse -->
+          <form method="POST" action="{% url 'register' %}" class="space-y-4">
+            {% csrf_token %}
+            <div class="mb-12">
+              <div class="flex items-center flex-row justify-between">
+                <h3 class="text-[#13509b] text-3xl font-semibold"> Crea tu cuenta </h3>
+                <img src="{% static 'core/img/svg/log-in.svg' %}" alt="Logeate" class="w-8 h-8">
+              </div>
+              <p class="text-slate-500 text-sm mt-6 leading-relaxed">Regístrate y comienza a disfrutar de todos los beneficios que nuestra ferretería tiene para ofrecerte. ¡Tu proyecto comienza aquí!</p>
+            </div>
+
+            <!-- Campo de nombre de usuario -->
+            <div>
+              <label class="text-slate-800 text-sm font-medium mb-2 block">Nombre de usuario</label>
+              <div class="relative flex items-center">
+                <input name="newUsername" type="text" class="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4" viewBox="0 0 24 24">
+                  <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                  <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Campo de email -->
+            <div>
+                <label class="text-slate-800 text-sm font-medium mb-2 block">Correo electronico</label>
+                <div class="relative flex items-center">
+                    <input name="email" type="text" class="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" class="w-[18px] h-[18px] absolute right-4" viewBox="0 0 512 512">
+                        <path d="M424 80H88a56.06 56.06 0 00-56 56v240a56.06 56.06 0 0056 56h336a56.06 56.06 0 0056-56V136a56.06 56.06 0 00-56-56zm-14.18 92.63l-144 112a16 16 0 01-19.64 0l-144-112a16 16 0 1119.64-25.26L256 251.73l134.18-104.36a16 16 0 0119.64 25.26z"/>
+                        <path xmlns="http://www.w3.org/2000/svg" d="M424 80H88a56.06 56.06 0 00-56 56v240a56.06 56.06 0 0056 56h336a56.06 56.06 0 0056-56V136a56.06 56.06 0 00-56-56zm-14.18 92.63l-144 112a16 16 0 01-19.64 0l-144-112a16 16 0 1119.64-25.26L256 251.73l134.18-104.36a16 16 0 0119.64 25.26z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div>
+                <label class="text-slate-800 text-sm font-medium mb-2 block">Nueva contraseña</label>
+                <div class="relative flex items-center">
+                    <input name="newPassword" type="password" class="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" onclick="showPassword(event)" fill="#bbb" stroke="#bbb" class="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                        <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Campo de conf contraseña -->
+            <div>
+                <label class="text-slate-800 text-sm font-medium mb-2 block">Confirmar contraseña</label>
+                <div class="relative flex items-center">
+                    <input name="rePassword" type="password" class="w-full text-sm text-slate-800 border border-slate-300 pl-4 pr-10 py-3 rounded-lg outline-blue-600"/>
+                </div>
+            </div>
+
+            <div class="!mt-6">
+              <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-[15px] font-medium tracking-wide rounded-lg text-white bg-[#13509b] hover:bg-blue-700 focus:outline-none cursor-pointer">
+                Registrarse
+              </button>
+              {% if messages %}
+                {% for message in messages %}
+                  <div role="alert" class="border-s-4 border-red-700 bg-red-50 p-4 animate-fade-in mt-6">
+                    <div class="flex items-center gap-2 text-red-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                        <path
+                          fill-rule="evenodd"
+                          d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                  
+                      <strong class="font-medium"> Ha habido un problema </strong>
+                    </div>
+                  
+                    <p class="mt-2 text-sm text-red-700">
+                      {{ message }}
+                    </p>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </form>
+        </div>
+        <div class="max-md:hidden">
+            <img src="{% static 'core/img/login-image.webp' %}" class="w-full aspect-[71/50] max-md:w-4/5 mx-auto block object-cover" alt="login img" />
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<script src="{% static 'core/js/showPass.js' %}"></script>
+{% endblock %}

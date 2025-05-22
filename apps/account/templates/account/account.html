@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load django_browser_reload %}
+
+{% block title %}
+    Cuenta
+{% endblock %}
+
+{% block content %}
+<section class="flex justify-center items-center min-h-screen">
+    <div class="account-main">
+        <div class="box-1">
+            <div>
+                <h1>
+                    Bienvenido <span style="text-transform: capitalize;">{{user.username}}</span>
+                </h1>
+                <h2>
+                    Tipo de cuenta: <span style="color: red;">{{user.tipo}}</span>
+                </h2>
+            </div>
+            <ul>
+                <li>
+                    <button>
+                        <p>Cambiar nombre de usuario</p>
+                        <img src="{% static 'core/img/svg/person.svg' %}" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <p>Cambiar correo electronico</p>
+                        <img src="{% static 'core/img/svg/email.svg' %}" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <p>Cambiar contraseña</p>
+                        <img src="{% static 'core/img/svg/lock-closed.svg' %}" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <p>Soporte</p>
+                        <img src="{% static 'core/img/svg/help-buoy.svg' %}" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button>
+                        <p>Eliminar cuenta</p>
+                        <img src="{% static 'core/img/svg/trash.svg' %}" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button onclick="location.href='{% url 'logout' %}'">
+                        <p>Cerrar sesión</p>
+                        <img src="{% static 'core/img/svg/log-out.svg' %}" alt="">
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div id="dynamic-content" class="box-2">
+            {% block account_content %}
+                <p>Aca es donde podrás ver todos los ajustes del usuario uno por uno.</p>
+            {% endblock %}
+        </div>
+    </div>
+</section>
+{% endblock %}

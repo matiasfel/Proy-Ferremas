@@ -2,3 +2,4 @@ Django
 python-decouple
 django-extensions
 django-browser-reload
+djangorestframework
