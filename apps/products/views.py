@@ -32,7 +32,7 @@ class ProductoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
 
-@require_POST
+
 def add_to_cart(request, producto_id):
     carrito = request.session.get('carrito', {})
 
