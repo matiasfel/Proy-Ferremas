@@ -1,0 +1,138 @@
+[
+  {
+    "codigo": "MAN-00001",
+    "codigo_marca": "STN-001",
+    "marca": "Stanley",
+    "nombre": "Martillo de acero",
+    "stock": 25,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 12792
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 13192
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00002",
+    "codigo_marca": "BOS-002",
+    "marca": "Bosch",
+    "nombre": "Destornillador de estrella",
+    "stock": 50,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 4392
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 4792
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00003",
+    "codigo_marca": "TRM-003",
+    "marca": "Truper",
+    "nombre": "Llave inglesa",
+    "stock": 30,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 10392
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 10792
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00004",
+    "codigo_marca": "BLK-004",
+    "marca": "Black+Decker",
+    "nombre": "Taladro eléctrico",
+    "stock": 15,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 39992
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 42392
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00005",
+    "codigo_marca": "BOS-005",
+    "marca": "Bosch",
+    "nombre": "Taladro percutor",
+    "stock": 10,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 71992
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 74392
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00006",
+    "codigo_marca": "TRM-006",
+    "marca": "Truper",
+    "nombre": "Sierra manual",
+    "stock": 20,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 6392
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 6792
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00007",
+    "codigo_marca": "BLK-007",
+    "marca": "Black+Decker",
+    "nombre": "Lijadora orbital",
+    "stock": 12,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 27992
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 29192
+      }
+    ]
+  },
+  {
+    "codigo": "MAN-00008",
+    "codigo_marca": "CEM-008",
+    "marca": "Cemex",
+    "nombre": "Cemento Portland",
+    "stock": 100,
+    "precios": [
+      {
+        "fecha": "2023-01-01",
+        "valor": 7992
+      },
+      {
+        "fecha": "2023-06-01",
+        "valor": 8392
+      }
+    ]
+  }
+]

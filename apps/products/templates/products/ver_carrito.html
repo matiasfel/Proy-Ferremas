@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center justify-center">
+    <div class="bg-white shadow-md rounded-lg p-6 mt-[80px] w-full max-w-4xl">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Carrito de Compras</h1>
+        {% if carrito %}
+            <table class="w-full border-collapse">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-700">
+                        <th class="py-2 px-4 border-b">Producto</th>
+                        <th class="py-2 px-4 border-b">Cantidad</th>
+                        <th class="py-2 px-4 border-b">Precio</th>
+                        <th class="py-2 px-4 border-b">Eliminar</th>
+                        <th class="py-2 px-4 border-b">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto_id, item in carrito.items %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="py-2 px-4 border-b">{{ item.nombre }}</td>
+                        <td class="py-2 px-4 border-b text-center">
+                            <form action="{% url 'actualizar_carrito' producto_id %}" method="POST" class="flex items-center gap-2">
+                                {% csrf_token %}
+                                <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1"
+                                       class="w-16 text-center border rounded p-1" />
+                                <button type="submit"
+                                        class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition">
+                                    Actualizar
+                                </button>
+                            </form>
+                        </td>
+                        <td class="py-2 px-4 border-b text-center">
+                            <a href="{% url 'eliminar_del_carrito' producto_id %}"
+                               class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                                Eliminar
+                            </a>
+                        </td>
+                        <td class="py-2 px-4 border-b text-right">${{ item.precio|floatformat:2 }}</td>
+                        <td class="py-2 px-4 border-b text-right">${{ item.precio|floatformat:2|floatformat:2|add:item.cantidad }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="mt-6 text-right font-bold text-gray-800 text-lg">Total: ${{ total|floatformat:2 }}</p>
+            <div class="mt-4 flex justify-end">
+                <a href="#" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">
+                    Proceder al Pago
+                </a>
+            </div>
+        {% else %}
+            <p class="text-gray-600 text-center">Tu carrito está vacío.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

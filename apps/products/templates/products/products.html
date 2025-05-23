@@ -8,28 +8,62 @@
 {% endblock %}
 
 {% block content %}
-    <section class="min-h-screen">
-        <!-- PRODUCTOS / LISTADO -->
-        <div class="flex justify-center items-center">
-            <div class="products-main mt-[300px]">
-                <h1 style="font-weight: bold; text-align: center;">Productos</h1>
-                <ul>
-                    {% if productos %}
-                        <ul>
-                            {% for producto in productos %}
-                                <li>
-                                    <strong>{{ producto.nombre }}</strong><br>
-                                    Código: {{ producto.codigo }}<br>
-                                    Marca: {{ producto.marca.nombre }}<br>
-                                    Stock: {{ producto.stock }}<br>
-                                </li>
-                                <hr>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No hay productos disponibles.</p>
-                    {% endif %}
-                </ul>
-            </div>
-    </section>
+<section class="min-h-screen bg-gray-50 py-20">
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-10">Catálogo de Productos</h1>
+
+        <form method="get" class="mb-10 flex flex-col md:flex-row items-center justify-center gap-4">
+            <input type="text" name="q" placeholder="Buscar producto..." value="{{ request.GET.q }}"
+                   class="w-full md:w-1/3 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        
+            <select name="categoria" class="w-full md:w-1/4 px-4 py-2 border rounded-lg shadow-sm">
+                <option value="">Todas las categorías</option>
+                {% for key, label in categorias %}
+                    <option value="{{ key }}" {% if request.GET.categoria == key %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                Filtrar
+            </button>
+        </form>
+             
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% if productos %}
+                {% for producto in productos %}
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-800">{{ producto.nombre }}</h2>
+                            <p class="text-sm text-gray-500">Código: {{ producto.codigo }}</p>
+                            <p class="text-sm text-gray-500">Marca: {{ producto.marca.nombre }}</p>
+                            <p class="text-sm text-gray-500">Stock: {{ producto.stock }}</p>
+                        </div>
+
+                        <div class="mt-4">
+                            {% with producto.precios.first as precio %}
+                                {% if precio %}
+                                    <p class="text-lg font-bold text-green-600">${{ precio.valor|floatformat:2 }}</p>
+                                {% else %}
+                                    <p class="text-sm text-red-400 italic">Sin precio registrado</p>
+                                {% endif %}
+                            {% endwith %}
+                            {% if producto.stock == 0 %}
+                                <button class="w-full bg-red-600 text-white mt-4 py-2 rounded-lg">
+                                    No hay stock
+                                </button>
+                            {% else %}
+                                <a href="{% url 'agregar_al_carrito' producto.id %}"
+                                    class="block w-full text-center bg-blue-600 text-white mt-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                    Agregar al carrito
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="col-span-full text-center text-gray-500">No hay productos disponibles.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -111,97 +111,12 @@
 
             {% elif user.is_authenticated %}
 
-              <button class="buy-cart" onclick="openCart()">
+              <button class="buy-cart" onclick="location.href='{% url 'ver_carrito' %}'">
                 <img src="{% static 'core/img/svg/buy-cart.svg' %}" alt="Carro de compras">
-                <span>0</span>
+                {% if cart_items_count > 0 %}
+                  <span>{{ cart_items_count }}</span>
+                {% endif %}
               </button>
-
-              <!-- Div cart -->
-                <div
-                  class="fixed top-18 right-4 w-full max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:right-8 sm:px-6 lg:right-32 lg:px-8"
-                  aria-modal="true"
-                  role="dialog"
-                  tabindex="-1"
-                  id="cart"
-                  style="display: none;
-                  z-index: 1000;
-                  background-color: rgba(255, 255, 255, 0.9);"
-                >
-                <button class="absolute end-4 top-4 text-gray-600 transition hover:scale-110" onclick="document.getElementById('cart').style.display = 'none';" style="cursor: pointer;">
-                  <img src="{% static 'core/img/svg/close.svg' %}" alt="Cerrar carro" class="size-6">
-                </button>
-              
-                <div class="mt-4 space-y-6">
-                  <ul class="space-y-4">
-                    <li class="flex items-center gap-4">
-                      <img
-                        src="https://images-na.ssl-images-amazon.com/images/I/718GmjiwbAL.jpg"
-                        alt=""
-                        class="size-16 rounded-sm object-cover"
-                      />
-              
-                      <div>
-                        <h3 class="text-sm text-gray-900">Prueba</h3>
-              
-                        <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
-                          <div>
-                            <dt class="inline">Versión:</dt>
-                            <dd class="inline">XXXXXX</dd>
-                          </div>
-              
-                          <div>
-                            <dt class="inline">Codigo:</dt>
-                            <dd class="inline">XXXXXX</dd>
-                          </div>
-                        </dl>
-                      </div>
-              
-                      <div class="flex flex-1 items-center justify-end gap-2">
-                        <form>
-                          <label for="Line2Qty" class="sr-only"> Quantity </label>
-              
-                          <input
-                            type="number"
-                            min="1"
-                            value="1"
-                            id="Line2Qty"
-                            class="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-hidden [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                          />
-                        </form>
-              
-                        <button class="text-gray-600">
-                          <span class="sr-only">Remove item</span>
-                          <img src="{% static 'core/img/svg/trash.svg' %}" alt="Eliminar producto" class="size-4" style="cursor: pointer;">
-                        </button>
-                      </div>
-                    </li>
-                  </ul>
-              
-                  <div class="space-y-4 text-center">
-                    <a
-                      href="#"
-                      class="block rounded-sm border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
-                    >
-                      Ver mi carro
-                    </a>
-              
-                    <a
-                      href="#"
-                      class="block rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
-                    >
-                      Pagar
-                    </a>
-              
-                    <a
-                      href="#"
-                      class="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
-                    >
-                      Seguir comprando
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <!--  -->
 
               <button class="user" onclick="location.href='{% url "account" %}'">
                 <img src="{% static 'core/img/user.png' %}" alt="Usuario">

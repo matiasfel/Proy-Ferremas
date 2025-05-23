@@ -1,0 +1,121 @@
+[
+    {
+            "codigo": "BAS-00001",
+            "codigo_marca": "CEM-001",
+            "marca": "Cemex",
+            "nombre": "Cemento Portland",
+            "stock": 100,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 7990
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 8390
+                    }
+            ]
+    },
+    {
+            "codigo": "BAS-00002",
+            "codigo_marca": "ARE-002",
+            "marca": "Constructores",
+            "nombre": "Arena fina para construcción",
+            "stock": 200,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 3990
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 4390
+                    }
+            ]
+    },
+    {
+            "codigo": "BAS-00003",
+            "codigo_marca": "LAD-003",
+            "marca": "Ladrillos MX",
+            "nombre": "Ladrillos rojos estándar",
+            "stock": 500,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 400
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 440
+                    }
+            ]
+    },
+    {
+            "codigo": "BAS-00004",
+            "codigo_marca": "ACB-004",
+            "marca": "Acabados Pro",
+            "nombre": "Yeso para acabados",
+            "stock": 150,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 5590
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 5990
+                    }
+            ]
+    },
+    {
+            "codigo": "BAS-00005",
+            "codigo_marca": "PIN-005",
+            "marca": "Comex",
+            "nombre": "Pintura blanca mate",
+            "stock": 80,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 15990
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 16490
+                    }
+            ]
+    },
+    {
+            "codigo": "BAS-00006",
+            "codigo_marca": "BAR-006",
+            "marca": "Sayer Lack",
+            "nombre": "Barniz transparente brillante",
+            "stock": 60,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 11990
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 12490
+                    }
+            ]
+    },
+    {
+            "codigo": "BAS-00007",
+            "codigo_marca": "CER-007",
+            "marca": "Interceramic",
+            "nombre": "Cerámicos para piso 30x30",
+            "stock": 120,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 20990
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 21490
+                    }
+            ]
+    }
+]

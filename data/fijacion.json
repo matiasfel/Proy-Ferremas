@@ -1,0 +1,87 @@
+[
+    {
+            "codigo": "FIJ-00001",
+            "codigo_marca": "TRM-001",
+            "marca": "Truper",
+            "nombre": "Tornillos autorroscantes",
+            "stock": 500,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 80
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 96
+                    }
+            ]
+    },
+    {
+            "codigo": "FIJ-00002",
+            "codigo_marca": "FIS-002",
+            "marca": "Fischer",
+            "nombre": "Anclajes de expansión",
+            "stock": 300,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 1200
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 1280
+                    }
+            ]
+    },
+    {
+            "codigo": "FIJ-00003",
+            "codigo_marca": "3M-003",
+            "marca": "3M",
+            "nombre": "Adhesivo epóxico",
+            "stock": 100,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 4792
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 5192
+                    }
+            ]
+    },
+    {
+            "codigo": "FIJ-00004",
+            "codigo_marca": "BOS-004",
+            "marca": "Bosch",
+            "nombre": "Nivel láser de línea",
+            "stock": 20,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 71992
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 74392
+                    }
+            ]
+    },
+    {
+            "codigo": "FIJ-00005",
+            "codigo_marca": "STA-005",
+            "marca": "Stanley",
+            "nombre": "Cinta métrica de 5 metros",
+            "stock": 150,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 6392
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 6792
+                    }
+            ]
+    }
+]

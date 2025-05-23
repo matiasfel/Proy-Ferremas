@@ -1,0 +1,87 @@
+[
+    {
+            "codigo": "SEG-00001",
+            "codigo_marca": "TRM-001",
+            "marca": "Truper",
+            "nombre": "Casco de seguridad industrial",
+            "stock": 50,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 11041.5
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 11466.5
+                    }
+            ]
+    },
+    {
+            "codigo": "SEG-00002",
+            "codigo_marca": "STN-002",
+            "marca": "Stanley",
+            "nombre": "Guantes de protección anticorte",
+            "stock": 100,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 7641.5
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 8066.5
+                    }
+            ]
+    },
+    {
+            "codigo": "SEG-00003",
+            "codigo_marca": "BOS-003",
+            "marca": "Bosch",
+            "nombre": "Lentes de seguridad transparentes",
+            "stock": 75,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 5091.5
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 5516.5
+                    }
+            ]
+    },
+    {
+            "codigo": "SEG-00004",
+            "codigo_marca": "BLK-004",
+            "marca": "Black+Decker",
+            "nombre": "Arnés de seguridad para trabajos en altura",
+            "stock": 20,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 42491.5
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 45041.5
+                    }
+            ]
+    },
+    {
+            "codigo": "SEG-00005",
+            "codigo_marca": "TRM-005",
+            "marca": "Truper",
+            "nombre": "Protectores auditivos",
+            "stock": 60,
+            "precios": [
+                    {
+                            "fecha": "2023-01-01",
+                            "valor": 12741.5
+                    },
+                    {
+                            "fecha": "2023-06-01",
+                            "valor": 13166.5
+                    }
+            ]
+    }
+]
