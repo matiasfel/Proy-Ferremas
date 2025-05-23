@@ -33,7 +33,7 @@ class ProductoViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductoSerializer
 
 @require_POST
-def add_cart(request, producto_id):
+def add_to_cart(request, producto_id):
     carrito = request.session.get('carrito', {})
 
     if str(producto_id) in carrito:
@@ -46,15 +46,16 @@ def add_cart(request, producto_id):
             'precio': float(precio_actual),
             'cantidad': 1
         }
+
     request.session['carrito'] = carrito
     return redirect(request.META.get('HTTP_REFERER', 'products'))  # Redirige a la misma vista o a 'products' si no hay referencia
 
-def view_cart(request):
+def ver_carrito(request):
     carrito = request.session.get('carrito', {})
     total = sum(item['precio'] * item['cantidad'] for item in carrito.values())
     return render(request, 'products/ver_carrito.html', {'carrito': carrito, 'total': total})
 
-def update_cart(request, producto_id):
+def actualizar_carrito(request, producto_id):
     carrito = request.session.get('carrito', {})
 
     nueva_cantidad = int(request.POST.get('cantidad', 1))
@@ -69,7 +70,7 @@ def update_cart(request, producto_id):
     request.session['carrito'] = carrito
     return redirect('ver_carrito')
 
-def delete_from_cart(request, producto_id):
+def eliminar_del_carrito(request, producto_id):
     carrito = request.session.get('carrito', {})
 
     if str(producto_id) in carrito:

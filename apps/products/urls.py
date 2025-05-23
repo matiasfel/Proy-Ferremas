@@ -9,8 +9,8 @@ router.register(r'json', ProductoViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('', products_view, name='products'),
-    path('carrito/', views.view_cart, name='ver_carrito'),
-    path('carrito/agregar/<int:producto_id>/', views.add_cart, name='agregar_al_carrito'),
-    path('carrito/actualizar/<int:producto_id>/', views.update_cart, name='actualizar_carrito'),
-    path('carrito/eliminar/<int:producto_id>/', views.delete_from_cart, name='eliminar_del_carrito'),
+    path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path('carrito/agregar/<int:producto_id>/', views.add_to_cart, name='agregar_al_carrito'),
+    path('carrito/actualizar/<int:producto_id>/', views.actualizar_carrito, name='actualizar_carrito'),
+    path('carrito/eliminar/<int:producto_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
 ]
